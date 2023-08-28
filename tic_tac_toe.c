@@ -28,11 +28,11 @@ void main()
   char decision[2];
 
   /*
-    inicializando variáveis de marcação
+    Initializing markup variables
 
-    elas correspondem à linha (letra) e
-    ao número da coluna
-    a1 -> linha 'a' coluna 1
+    They match the line (letter) and
+    the number of the column
+    a1 -> line 'a' column '1'
   */
 
   char a1, a2, a3;
@@ -44,8 +44,8 @@ void main()
   char c1, c2, c3;
   c1 = c2 = c3 = '-';
 
-  // começando um loop infinito
-  // quando jogo acabar -> break
+  //initializng an infinit loop
+  //when game ends -> break
 
   int counter = 0;
 
@@ -97,6 +97,7 @@ void main()
       toMark(&c3, &counter);
     }
 
+    //win verification
     if (isThereWinner(
       a1, a2, a3, 
       b1, b2, b3, 
@@ -107,6 +108,7 @@ void main()
       break;
     }
 
+    //draw verification
     if (isDraw(
       a1, a2, a3,
       b1, b2, b3,
@@ -179,7 +181,7 @@ int isThereWinner(
   return 0;
 }
 
-//This function verifies if it is draw
+//This function verifies if it is a draw
 int isDraw(
   char a1, char a2, char a3,
   char b1, char b2, char b3,
@@ -215,9 +217,8 @@ int isLineWinner(char cell1, char cell2, char cell3)
 //This function puts a letter into the correct variable
 void toMark(char *element, int *counterValue)
 {
-  // se contador for par, vez de X
-  // senão, vez de O
-
+  //if counter is even, turn of X
+  //else (is odd), turno of O
   if (!isMarked(*element))
   {
     if (*counterValue % 2 == 0)
