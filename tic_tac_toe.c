@@ -1,26 +1,27 @@
 #include <stdio.h>
 #include <string.h>
 
-void toMark(char *element, int *counterValue);
-// void incrementCounter(int *counter);
 void showGameboard(
     int counterValue,
     char a1, char a2, char a3,
     char b1, char b2, char b3,
-    char c1, char c2, char c3);
+    char c1, char c2, char c3
+);
 void showLine(char cell1, char cell2, char cell3);
-int isMarked(char cell);
 int isThereWinner(
   char a1, char a2, char a3,
   char b1, char b2, char b3,
   char c1, char c2, char c3
 );
-int isLineWinner(char cell1, char cell2, char cell3);
 int isDraw(
   char a1, char a2, char a3,
   char b1, char b2, char b3,
   char c1, char c2, char c3
 );
+int isLineWinner(char cell1, char cell2, char cell3);
+void toMark(char *element, int *counterValue);
+int isMarked(char cell);
+
 
 void main()
 {
@@ -126,26 +127,9 @@ void main()
   );
 }
 
-void toMark(char *element, int *counterValue)
-{
-  // se contador for par, vez de X
-  // senão, vez de O
+//Functions:
 
-  if (!isMarked(*element))
-  {
-    if (*counterValue % 2 == 0)
-    {
-      *element = 'X';
-    }
-    else
-    {
-      *element = 'O';
-    }
-
-    (*counterValue)++;
-  }
-}
-
+//This function will print the Gameboard entirely
 void showGameboard(
     int counterValue,
     char a1, char a2, char a3,
@@ -163,21 +147,13 @@ void showGameboard(
   showLine(c1, c2, c3);
 }
 
-int isMarked(char cell)
-{
-  if (cell == '-')
-  {
-    return 0;
-  }
-
-  return 1;
-}
-
+//This function will print only a line
 void showLine(char cell1, char cell2, char cell3)
 {
   printf("  %c   %c   %c\n\n", cell1, cell2, cell3);
 }
 
+//This function verifies if already have a winner
 int isThereWinner(
   char a1, char a2, char a3,
   char b1, char b2, char b3,
@@ -203,19 +179,7 @@ int isThereWinner(
   return 0;
 }
 
-int isLineWinner(char cell1, char cell2, char cell3)
-{
-  if (isMarked(cell1) && isMarked(cell2) && isMarked(cell3))
-  {
-    if (cell1 == cell2 && cell2 == cell3)
-    {
-      return 1;
-    }
-  }
-
-  return 0;
-}
-
+//This function verifies if it is draw
 int isDraw(
   char a1, char a2, char a3,
   char b1, char b2, char b3,
@@ -232,4 +196,50 @@ int isDraw(
   }
   
   return 0;
+}
+
+//This function verifies if the line has won
+int isLineWinner(char cell1, char cell2, char cell3)
+{
+  if (isMarked(cell1) && isMarked(cell2) && isMarked(cell3))
+  {
+    if (cell1 == cell2 && cell2 == cell3)
+    {
+      return 1;
+    }
+  }
+
+  return 0;
+}
+
+//This function puts a letter into the correct variable
+void toMark(char *element, int *counterValue)
+{
+  // se contador for par, vez de X
+  // senão, vez de O
+
+  if (!isMarked(*element))
+  {
+    if (*counterValue % 2 == 0)
+    {
+      *element = 'X';
+    }
+    else
+    {
+      *element = 'O';
+    }
+
+    (*counterValue)++;
+  }
+}
+
+//This function verifies if the cell is already marked
+int isMarked(char cell)
+{
+  if (cell == '-')
+  {
+    return 0;
+  }
+
+  return 1;
 }
